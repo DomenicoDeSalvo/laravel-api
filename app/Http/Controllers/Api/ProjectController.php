@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -13,7 +13,7 @@ class ProjectController extends Controller
         $projects = Project::all();
 
         return response()->json([
-            'project' => $projects
+            'projects' => $projects
         ]);
     }
 }
