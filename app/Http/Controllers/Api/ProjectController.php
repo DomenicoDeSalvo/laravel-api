@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         
         $per_page = $request->perPage ?? 10;
-        $results = Project::with('type', 'technologies')->paginate(10);
+        $results = Project::with('type', 'technologies')->paginate($per_page);
 
         return response()->json([
             'results' => $results
