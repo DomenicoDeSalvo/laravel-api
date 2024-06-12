@@ -10,6 +10,7 @@ class ProjectController extends Controller
 {
     public function index(){
         
+        $per_page = $request->perPage ?? 10;
         $results = Project::with('type', 'technologies')->paginate(10);
 
         return response()->json([
