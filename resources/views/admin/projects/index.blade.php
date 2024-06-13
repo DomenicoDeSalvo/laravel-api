@@ -38,11 +38,32 @@
                     <td>
                         <div class="d-flex gap-2">
                             <a class='btn btn-secondary' href="{{route('admin.projects.edit', $project)}}">Modifica</a>
-                            <form class="delete" action="{{ route('admin.projects.destroy', $project) }}" method="POST">        
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">Elimina</button>
-                            </form>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-{{$project->id}}">Elimina</button>
+                        </div>
+                        <div class="modal" tabindex="-1" id="modal-{{$project->id}}">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Elimina</h5>
+                                  <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>E SE POI TE NE PENTI?</p>
+                                  <p>Stai eliminando il progetto {{ $project->title }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">No</button>
+                                  <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                            
+                                    @csrf
+                                    @method('DELETE')
+                    
+                                    <button class="btn btn-danger">Si</button>
+                                
+                                </form> 
+                                </div>
+                              </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -50,23 +71,6 @@
             </tbody>
         </table>
     </div>
-    <!-- Modale -->
-    <div class="modal" tabindex="-1" id="modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Elimina</h5>
-              <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>E SE POI TE NE PENTI?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">No</button>
-                <button class="btn btn-danger confirm">Elimina</button>
-            </div>
-          </div>
-        </div>
-    </div>
+
 
 @endsection
